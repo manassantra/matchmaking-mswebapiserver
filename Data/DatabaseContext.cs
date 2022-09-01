@@ -7,9 +7,10 @@ namespace mswebapiserver.Data
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
-        public DbSet<ApplicationRole> ApplicationRoles { get; set; }
         public DbSet<AdminUser> AdminUsers { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<AgentUser> AgentUsers { get; set; }
+        public DbSet<AddressDetail> AddressDetails { get; set; }
+
     }
 }

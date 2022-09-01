@@ -12,7 +12,7 @@ using mswebapiserver.Data;
 namespace mswebapiserver.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220831144742_Initial-Migration")]
+    [Migration("20220901200202_Initial-Migration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,55 @@ namespace mswebapiserver.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("mswebapiserver.Models.AddressDetail", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<string>("AddressLine1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AddressLine2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AddressType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PinCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("createdDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("modifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("modifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("uid")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("AddressDetails");
+                });
 
             modelBuilder.Entity("mswebapiserver.Models.AdminUser", b =>
                 {
@@ -119,37 +168,6 @@ namespace mswebapiserver.Migrations
                     b.ToTable("AgentUsers");
                 });
 
-            modelBuilder.Entity("mswebapiserver.Models.ApplicationRole", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("isActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("modifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("modifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("roleName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.ToTable("ApplicationRoles");
-                });
-
             modelBuilder.Entity("mswebapiserver.Models.AppUser", b =>
                 {
                     b.Property<int>("id")
@@ -181,7 +199,16 @@ namespace mswebapiserver.Migrations
                     b.Property<bool>("isActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("isEmailVerified")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isMobileVerified")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("isPremium")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isPrivate")
                         .HasColumnType("bit");
 
                     b.Property<string>("lastName")

@@ -14,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DatabaseContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DB_QA_ConnectionString"));
+  //  options.UseSqlServer(builder.Configuration.GetConnectionString("DB_PRD_ConnectionString"));
 });
 
 // Add services to the container.

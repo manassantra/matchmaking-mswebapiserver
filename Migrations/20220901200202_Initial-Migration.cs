@@ -10,6 +10,30 @@ namespace mswebapiserver.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "AddressDetails",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    uid = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AddressType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AddressLine1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AddressLine2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PinCode = table.Column<int>(type: "int", nullable: false),
+                    createdDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    modifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    modifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    isActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AddressDetails", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AdminUsers",
                 columns: table => new
                 {
@@ -56,24 +80,6 @@ namespace mswebapiserver.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ApplicationRoles",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    roleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    isActive = table.Column<bool>(type: "bit", nullable: false),
-                    createdDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    modifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    modifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ApplicationRoles", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AppUsers",
                 columns: table => new
                 {
@@ -84,7 +90,9 @@ namespace mswebapiserver.Migrations
                     lastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     fullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    isEmailVerified = table.Column<bool>(type: "bit", nullable: false),
                     mobile = table.Column<long>(type: "bigint", nullable: false),
+                    isMobileVerified = table.Column<bool>(type: "bit", nullable: false),
                     passwordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     passwordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -93,7 +101,8 @@ namespace mswebapiserver.Migrations
                     isPremium = table.Column<bool>(type: "bit", nullable: false),
                     createdDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     modifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    modifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    modifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    isPrivate = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -104,13 +113,13 @@ namespace mswebapiserver.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AddressDetails");
+
+            migrationBuilder.DropTable(
                 name: "AdminUsers");
 
             migrationBuilder.DropTable(
                 name: "AgentUsers");
-
-            migrationBuilder.DropTable(
-                name: "ApplicationRoles");
 
             migrationBuilder.DropTable(
                 name: "AppUsers");

@@ -21,9 +21,11 @@ namespace mswebapiserver.Models
 
         [Required]
         public string? email { get; set; }
+        public bool isEmailVerified { get; set; }       
 
         [Required]
         public Int64 mobile { get; set; }
+        public bool isMobileVerified { get; set; }
 
         [JsonIgnore]
         public byte[]? passwordHash { get; set; }
@@ -44,5 +46,7 @@ namespace mswebapiserver.Models
         public DateTime modifiedDate { get; set; }
 
         public string? modifiedBy { get; set; }
+
+        public bool isPrivate { get; set; }
     }
 }
