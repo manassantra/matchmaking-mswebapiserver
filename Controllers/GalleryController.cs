@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using mswebapiserver.DTOs;
 using mswebapiserver.Models;
 using System.Net.Http.Headers;
 
@@ -11,17 +12,15 @@ namespace mswebapiserver.Controllers
     public class GalleryController : BaseapiController
     {
         private readonly DatabaseContext _context;
-        private readonly IWebHostEnvironment _hostEnvironment;
-        public GalleryController(DatabaseContext context, IWebHostEnvironment hostEnvironment)
+        public GalleryController(DatabaseContext context)
         {
             _context = context;
-            _hostEnvironment = hostEnvironment;
         }
 
 
         //  POST  ::  Uploade Images
         [HttpPost("upload/{id}")]
-        public async Task<ActionResult> UploadImage(IList<IFormFile> formFile, int id)
+        public async Task<ActionResult<ImageUploadDTO>> UploadImage(IList<IFormFile> formFile, int id)
         {
             try
             {
@@ -72,44 +71,19 @@ namespace mswebapiserver.Controllers
                         };
                         _context.ImageGallery.Add(gallery);
                         await _context.SaveChangesAsync();
+
+                        return new ImageUploadDTO
+                        {
+                            batchRefId = gallery.batchRefId,
+                            userRefId = gallery.userRefid,
+                        };
                     }
                 }
-
-                return Ok("All the files are successfully uploaded. \n");
-
+               return Ok("All the files are successfully uploaded.");
             } catch (Exception ex)
             {
                 return StatusCode(500, "Internal server error; \n" + ex);
             }
-            /*            try
-                        {
-                            var files = Request.Form.Files;
-                            var folderName = Path.Combine("StaticFiles", "Images");
-                            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-
-                            if (files.Any(f => f.Length == 0))
-                            {
-                                return BadRequest();
-                            }
-
-                            foreach (var file in files)
-                            {
-                                var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                                var fullPath = Path.Combine(pathToSave, fileName);
-                                var dbPath = Path.Combine(folderName, fileName); //you can add this path to a list and then return all dbPaths to the client if require
-
-                                using (var stream = new FileStream(fullPath, FileMode.Create))
-                                {
-                                    file.CopyTo(stream);
-                                }
-                            }
-
-                            return Ok("All the files are successfully uploaded.");
-                        }
-                        catch (Exception ex)
-                        {
-                            return StatusCode(500, "Internal server error");
-                        }*/
         }
 
 
