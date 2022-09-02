@@ -31,9 +31,9 @@ namespace mswebapiserver.Controllers.AddressController
         [HttpGet("{id}")]
         public ActionResult<IList<AddressDetail>> GetAddressDetails(string? id)
         {
-            var address = _context.AddressDetails.FirstOrDefault(x => x.uid == id);
-            if (address == null) return NotFound("No Data Found");
-            return Ok(address);
+            var allAddress = _context.AddressDetails.ToList();
+            List<AddressDetail> addresses = allAddress.FindAll(x => x.uid == id);
+            return addresses;
         }
 
 

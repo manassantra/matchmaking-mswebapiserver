@@ -11,6 +11,7 @@ namespace mswebapiserver.Data
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<AgentUser> AgentUsers { get; set; }
         public DbSet<AddressDetail> AddressDetails { get; set; }
+        public DbSet<UserGallery> ImageGallery { get; set; }
 
     }
 }

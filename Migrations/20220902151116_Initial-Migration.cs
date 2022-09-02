@@ -108,6 +108,42 @@ namespace mswebapiserver.Migrations
                 {
                     table.PrimaryKey("PK_AppUsers", x => x.id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "ImageGallery",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    imageFilename = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    userRefid = table.Column<int>(type: "int", nullable: false),
+                    batchRefId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    imagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    createdDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    createdBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    isDeleted = table.Column<bool>(type: "bit", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ImageGallery", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserFeeds",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    batchId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    postDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    createdAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    createdBy = table.Column<int>(type: "int", nullable: false),
+                    isActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserFeeds", x => x.id);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -123,6 +159,12 @@ namespace mswebapiserver.Migrations
 
             migrationBuilder.DropTable(
                 name: "AppUsers");
+
+            migrationBuilder.DropTable(
+                name: "ImageGallery");
+
+            migrationBuilder.DropTable(
+                name: "UserFeeds");
         }
     }
 }

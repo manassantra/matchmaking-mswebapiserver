@@ -12,8 +12,8 @@ using mswebapiserver.Data;
 namespace mswebapiserver.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220901200202_Initial-Migration")]
-    partial class InitialMigration
+    [Migration("20220902164106_Initial-test-Migration")]
+    partial class InitialtestMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -236,6 +236,40 @@ namespace mswebapiserver.Migrations
                     b.HasKey("id");
 
                     b.ToTable("AppUsers");
+                });
+
+            modelBuilder.Entity("mswebapiserver.Models.UserGallery", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("batchRefId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("createdBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("createdDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("imageFilename")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("imagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("isDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("userRefid")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ImageGallery");
                 });
 #pragma warning restore 612, 618
         }
