@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace mswebapiserver.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class DeleteMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -117,7 +117,6 @@ namespace mswebapiserver.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     imageFilename = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     userRefid = table.Column<int>(type: "int", nullable: false),
-                    batchRefId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     imagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     createdDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     createdBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -134,11 +133,11 @@ namespace mswebapiserver.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    batchId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    userRefId = table.Column<int>(type: "int", nullable: false),
                     postDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    createdAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    createdBy = table.Column<int>(type: "int", nullable: false),
-                    isActive = table.Column<bool>(type: "bit", nullable: false)
+                    createdAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    createdBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    isDeleted = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {

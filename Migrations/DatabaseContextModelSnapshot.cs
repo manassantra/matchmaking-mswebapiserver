@@ -244,9 +244,6 @@ namespace mswebapiserver.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
-                    b.Property<string>("batchId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("createdAt")
                         .HasColumnType("datetime2");
 
@@ -274,9 +271,6 @@ namespace mswebapiserver.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("batchRefId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("createdBy")
                         .HasColumnType("nvarchar(max)");

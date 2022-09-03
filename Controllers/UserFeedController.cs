@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using mswebapiserver.DTOs;
 using mswebapiserver.Models;
 
@@ -23,7 +24,6 @@ namespace mswebapiserver.Controllers
             var post = new UserFeed
             {
                 userRefId = userFeed.userRefId,
-                batchId = userFeed.batchRefId,
                 postDescription = userFeed.postDescription,
                 createdAt = DateTime.Now,
                 createdBy = user.email,
@@ -34,6 +34,17 @@ namespace mswebapiserver.Controllers
             await _context.SaveChangesAsync();
 
             return Ok("Post Created Successfully ! ");
+        }
+
+
+        [HttpGet("getpost/{id}")]
+        public async Task<ActionResult> GetUsersPost(int id)
+        {
+            IList<UserFeed> posts = _context.UserFeeds.ToList();
+            var result = posts.Where(x => x.userRefId == id).ToList();
+            if (result.Count == 0) return NotFound("No Post Available");
+            return Ok(result);
+            
         }
 
     }

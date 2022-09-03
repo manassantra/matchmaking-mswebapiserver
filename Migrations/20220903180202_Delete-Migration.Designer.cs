@@ -12,8 +12,8 @@ using mswebapiserver.Data;
 namespace mswebapiserver.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220902164106_Initial-test-Migration")]
-    partial class InitialtestMigration
+    [Migration("20220903180202_Delete-Migration")]
+    partial class DeleteMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -238,6 +238,34 @@ namespace mswebapiserver.Migrations
                     b.ToTable("AppUsers");
                 });
 
+            modelBuilder.Entity("mswebapiserver.Models.UserFeed", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<DateTime?>("createdAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("createdBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("isDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("postDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("userRefId")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("UserFeeds");
+                });
+
             modelBuilder.Entity("mswebapiserver.Models.UserGallery", b =>
                 {
                     b.Property<int>("Id")
@@ -245,9 +273,6 @@ namespace mswebapiserver.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("batchRefId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("createdBy")
                         .HasColumnType("nvarchar(max)");
