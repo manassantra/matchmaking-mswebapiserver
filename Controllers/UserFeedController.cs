@@ -19,12 +19,16 @@ namespace mswebapiserver.Controllers
         public async Task<ActionResult<UserFeedDTO>> CreatePost(int id, UserFeedDTO userFeed)
         {
             var user = await _context.AppUsers.FindAsync(id);
+            var gallery = _context.ImageGallery.Where(x=> x.postBatchId == userFeed.postBatchId).ToList();
+            
             if (user == null) return BadRequest();
-
+            var FSSurl = "http://localhost/Images/";
             var post = new UserFeed
             {
-                userRefId = userFeed.userRefId,
+                userRefId = id,
                 postDescription = userFeed.postDescription,
+                postBatchId = userFeed.postBatchId,
+                imageUrl = gallery,
                 createdAt = DateTime.Now,
                 createdBy = user.email,
                 isDeleted = false
@@ -41,10 +45,11 @@ namespace mswebapiserver.Controllers
         public async Task<ActionResult> GetUsersPost(int id)
         {
             IList<UserFeed> posts = _context.UserFeeds.ToList();
+
             var result = posts.Where(x => x.userRefId == id).ToList();
             if (result.Count == 0) return NotFound("No Post Available");
+          
             return Ok(result);
-            
         }
 
     }
