@@ -12,8 +12,8 @@ using mswebapiserver.Data;
 namespace mswebapiserver.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220903180202_Delete-Migration")]
-    partial class DeleteMigration
+    [Migration("20220905192321_initial-migration")]
+    partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -255,6 +255,9 @@ namespace mswebapiserver.Migrations
                     b.Property<bool?>("isDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<int>("postBatchId")
+                        .HasColumnType("int");
+
                     b.Property<string>("postDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -274,6 +277,9 @@ namespace mswebapiserver.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("UserFeedid")
+                        .HasColumnType("int");
+
                     b.Property<string>("createdBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -289,12 +295,29 @@ namespace mswebapiserver.Migrations
                     b.Property<bool?>("isDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<int>("postBatchId")
+                        .HasColumnType("int");
+
                     b.Property<int>("userRefid")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserFeedid");
+
                     b.ToTable("ImageGallery");
+                });
+
+            modelBuilder.Entity("mswebapiserver.Models.UserGallery", b =>
+                {
+                    b.HasOne("mswebapiserver.Models.UserFeed", null)
+                        .WithMany("imageDetails")
+                        .HasForeignKey("UserFeedid");
+                });
+
+            modelBuilder.Entity("mswebapiserver.Models.UserFeed", b =>
+                {
+                    b.Navigation("imageDetails");
                 });
 #pragma warning restore 612, 618
         }

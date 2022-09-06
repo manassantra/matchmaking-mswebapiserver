@@ -31,7 +31,6 @@
 
   <ItemGroup>
     <Folder Include="StaticFiles\Images\" />
-    <Folder Include="StaticFiles\PostImages\" />
   </ItemGroup>
 
 </Project>

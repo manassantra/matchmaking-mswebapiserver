@@ -309,13 +309,13 @@ namespace mswebapiserver.Migrations
             modelBuilder.Entity("mswebapiserver.Models.UserGallery", b =>
                 {
                     b.HasOne("mswebapiserver.Models.UserFeed", null)
-                        .WithMany("imageUrl")
+                        .WithMany("imageDetails")
                         .HasForeignKey("UserFeedid");
                 });
 
             modelBuilder.Entity("mswebapiserver.Models.UserFeed", b =>
                 {
-                    b.Navigation("imageUrl");
+                    b.Navigation("imageDetails");
                 });
 #pragma warning restore 612, 618
         }

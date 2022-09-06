@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace mswebapiserver.Migrations
 {
-    public partial class DeleteMigration : Migration
+    public partial class initialmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -110,24 +110,6 @@ namespace mswebapiserver.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ImageGallery",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    imageFilename = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    userRefid = table.Column<int>(type: "int", nullable: false),
-                    imagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    createdDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    createdBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    isDeleted = table.Column<bool>(type: "bit", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ImageGallery", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "UserFeeds",
                 columns: table => new
                 {
@@ -135,6 +117,7 @@ namespace mswebapiserver.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     userRefId = table.Column<int>(type: "int", nullable: false),
                     postDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    postBatchId = table.Column<int>(type: "int", nullable: false),
                     createdAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     createdBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     isDeleted = table.Column<bool>(type: "bit", nullable: true)
@@ -143,6 +126,36 @@ namespace mswebapiserver.Migrations
                 {
                     table.PrimaryKey("PK_UserFeeds", x => x.id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "ImageGallery",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    imageFilename = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    userRefid = table.Column<int>(type: "int", nullable: false),
+                    postBatchId = table.Column<int>(type: "int", nullable: false),
+                    imagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    createdDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    createdBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    isDeleted = table.Column<bool>(type: "bit", nullable: true),
+                    UserFeedid = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ImageGallery", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ImageGallery_UserFeeds_UserFeedid",
+                        column: x => x.UserFeedid,
+                        principalTable: "UserFeeds",
+                        principalColumn: "id");
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ImageGallery_UserFeedid",
+                table: "ImageGallery",
+                column: "UserFeedid");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

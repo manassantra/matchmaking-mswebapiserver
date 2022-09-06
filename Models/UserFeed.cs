@@ -9,7 +9,7 @@ namespace mswebapiserver.Models
         public string? postDescription { get; set; }
         public int postBatchId { get; set; }
 
-        public List<UserGallery>? imageUrl { get; set; }
+        public List<UserGallery> imageDetails { get; set; }
         public DateTime? createdAt { get; set; }
         public string? createdBy { get; set; }
         public bool? isDeleted { get; set; }

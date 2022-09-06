@@ -20,36 +20,38 @@ namespace mswebapiserver.Controllers
         {
             var user = await _context.AppUsers.FindAsync(id);
             var gallery = _context.ImageGallery.Where(x=> x.postBatchId == userFeed.postBatchId).ToList();
-            
+
             if (user == null) return BadRequest();
-            var FSSurl = "http://localhost/Images/";
+
             var post = new UserFeed
             {
                 userRefId = id,
                 postDescription = userFeed.postDescription,
                 postBatchId = userFeed.postBatchId,
-                imageUrl = gallery,
+                imageDetails = gallery,
                 createdAt = DateTime.Now,
                 createdBy = user.email,
                 isDeleted = false
             };
 
-            _context.UserFeeds.Add(post);
-            await _context.SaveChangesAsync();
+          //  return Ok(post);
 
-            return Ok("Post Created Successfully ! ");
+            _context.UserFeeds.Add(post);
+            _context.SaveChanges();
+            return Ok(post);
         }
 
 
         [HttpGet("getpost/{id}")]
-        public async Task<ActionResult> GetUsersPost(int id)
+        public async Task<ActionResult<UserFeed>> GetUsersPost(int id)
         {
-            IList<UserFeed> posts = _context.UserFeeds.ToList();
-
-            var result = posts.Where(x => x.userRefId == id).ToList();
-            if (result.Count == 0) return NotFound("No Post Available");
-          
-            return Ok(result);
+            IList<UserFeed> posts = _context.UserFeeds.Where(x=> x.userRefId == id).ToList();
+            foreach (var post in posts)
+            {
+                List<UserGallery> gal = _context.ImageGallery.Where(x=> x.postBatchId==post.postBatchId).ToList();
+                post.imageDetails = gal;
+            }
+            return Ok(posts);
         }
 
     }
