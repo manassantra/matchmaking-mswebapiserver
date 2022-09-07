@@ -48,8 +48,17 @@ namespace mswebapiserver.Controllers
                 var userGallery = new List<UserGalleryDTO>();
                 foreach (var file in files)
                 {
+                    var chars2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
+                    var stringChars2 = new char[8];
+                    var random2 = new Random();
 
-                    var fileName = "Img_" + ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    for (int i = 0; i < stringChars2.Length; i++)
+                    {
+                        stringChars2[i] = chars2[random2.Next(chars2.Length)];
+                    }
+
+                    var randomName = new String(stringChars2);
+                    var fileName = "Img_" + randomName + ".jpg";
                     var fullPath = Path.Combine(pathToSave, fileName);
 
                   //  var dbPath = Path.Combine(folderName, fileName); //you can add this path to a list and then return all dbPaths to the client if require

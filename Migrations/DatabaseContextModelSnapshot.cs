@@ -236,6 +236,37 @@ namespace mswebapiserver.Migrations
                     b.ToTable("AppUsers");
                 });
 
+            modelBuilder.Entity("mswebapiserver.Models.ProfilePicture", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("createdBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("createdDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("imageFilename")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("imagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("isDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("userRefid")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProfilePictures");
+                });
+
             modelBuilder.Entity("mswebapiserver.Models.UserFeed", b =>
                 {
                     b.Property<int>("id")
