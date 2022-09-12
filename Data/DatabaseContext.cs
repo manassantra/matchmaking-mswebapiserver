@@ -14,6 +14,8 @@ namespace mswebapiserver.Data
         public DbSet<UserGallery> ImageGallery { get; set; }
         public DbSet<ProfilePicture> ProfilePictures { get; set; }
         public DbSet<UserFeed> UserFeeds { get; set; }
+        public DbSet<UserFollower> UserFollowers { get; set; }
+        public DbSet<UserNotification> UserNotifications { get; set; }
 
     }
 }

@@ -113,7 +113,7 @@ namespace mswebapiserver.Controllers
 
 
         //  GET by ID - Get single user account
-        [Authorize]
+       // [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUserDetails(int id)
         {

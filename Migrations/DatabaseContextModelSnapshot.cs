@@ -298,6 +298,31 @@ namespace mswebapiserver.Migrations
                     b.ToTable("UserFeeds");
                 });
 
+            modelBuilder.Entity("mswebapiserver.Models.UserFollower", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+
+                    b.Property<DateTime?>("followedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("followedUserId")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("isFollowing")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("userId")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("UserFollowers");
+                });
+
             modelBuilder.Entity("mswebapiserver.Models.UserGallery", b =>
                 {
                     b.Property<int>("Id")
@@ -335,6 +360,28 @@ namespace mswebapiserver.Migrations
                     b.HasIndex("UserFeedid");
 
                     b.ToTable("ImageGallery");
+                });
+
+            modelBuilder.Entity("mswebapiserver.Models.UserNotification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Notification")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("userId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserNotifications");
                 });
 
             modelBuilder.Entity("mswebapiserver.Models.UserGallery", b =>
