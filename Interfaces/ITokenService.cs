@@ -1,4 +1,5 @@
 ﻿using mswebapiserver.Models;
+using mswebapiserver.Models.User;
 
 namespace mswebapiserver.Interfaces
 {

@@ -4,11 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using mswebapiserver.DTOs;
 using mswebapiserver.Interfaces;
 using mswebapiserver.Models;
+using mswebapiserver.Models.User;
 using NuGet.Protocol;
 
 namespace mswebapiserver.Controllers
 {
-   
+
     public class FollowersController : BaseapiController
     {
         private readonly DatabaseContext _context;

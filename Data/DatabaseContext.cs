@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using mswebapiserver.Models;
+using mswebapiserver.Models.User;
 
 namespace mswebapiserver.Data
 {
@@ -16,6 +17,13 @@ namespace mswebapiserver.Data
         public DbSet<UserFeed> UserFeeds { get; set; }
         public DbSet<UserFollower> UserFollowers { get; set; }
         public DbSet<UserNotification> UserNotifications { get; set; }
+        public DbSet<UserMatch> UserMatches { get; set; }
+        public DbSet<UserJobDetail> UserJobDetails { get; set; }
+        public DbSet<UserEducationDetail> UserEducationDetails { get; set; }
+        public DbSet<PersonalDetail>  UserPersonalDetails { get; set; }
+        public DbSet<FamilyDetail> UserFamilyDetails { get; set; }
+        public DbSet<UserReligion> UserReligions { get; set; }
+        public DbSet<PartnerPreferance> PartnerPreferances { get; set; }
 
     }
 }

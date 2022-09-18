@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using mswebapiserver.Models;
+using mswebapiserver.Models.User;
 
 namespace mswebapiserver.Controllers
 {

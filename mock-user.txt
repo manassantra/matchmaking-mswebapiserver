@@ -1,0 +1,39 @@
+{
+  "firstName": "Manas",
+  "lastName": "Santra",
+  "email": "manassantra.contact@gmail.com",
+  "mobile": 9007065323,
+  "password": "password",
+  "gender": "male",
+  "agentId": "null"
+}
+=========================
+{
+  "firstName": "Abhik",
+  "lastName": "Chakrabarty",
+  "email": "abhikc@gmail.com",
+  "mobile": 9007065323,
+  "password": "password",
+  "gender": "male",
+  "agentId": "null"
+}
+===========================
+{
+  "firstName": "Sangita",
+  "lastName": "Hazra",
+  "email": "hsangita949@gmail.com",
+  "mobile": 7063113572,
+  "password": "password",
+  "gender": "female",
+  "agentId": "null"
+}
+===========================
+{
+  "firstName": "Shreoshee",
+  "lastName": "Das",
+  "email": "das.shreoshee26@gmail.com",
+  "mobile": 7407713682,
+  "password": "password",
+  "gender": "female",
+  "agentId": "null"
+}

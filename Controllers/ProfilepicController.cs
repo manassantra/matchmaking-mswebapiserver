@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using mswebapiserver.DTOs;
 using mswebapiserver.Interfaces;
 using mswebapiserver.Models;
+using mswebapiserver.Models.User;
 using System.Net.Http.Headers;
 
 namespace mswebapiserver.Controllers
@@ -38,7 +39,7 @@ namespace mswebapiserver.Controllers
             try
             {
                 var files = Request.Form.Files;
-                var folderName = Path.Combine("StaticFiles", "Images");
+                var folderName = Path.Combine("StaticFiles", "ProfileImages");
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
                 if (files.Any(f => f.Length == 0))

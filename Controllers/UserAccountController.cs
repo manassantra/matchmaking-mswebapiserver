@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using mswebapiserver.DTOs;
 using mswebapiserver.Interfaces;
-using mswebapiserver.Models;
+using mswebapiserver.Models.User;
 using System.Security.Cryptography;
 using System.Text;
 

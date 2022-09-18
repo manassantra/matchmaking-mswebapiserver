@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using mswebapiserver.Data;
 
@@ -11,9 +12,10 @@ using mswebapiserver.Data;
 namespace mswebapiserver.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220914153121_UserDetails-Migration")]
+    partial class UserDetailsMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -285,70 +287,6 @@ namespace mswebapiserver.Migrations
                     b.ToTable("UserFamilyDetails");
                 });
 
-            modelBuilder.Entity("mswebapiserver.Models.User.PartnerPreferance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ageFrom")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ageTo")
-                        .HasColumnType("int");
-
-                    b.Property<string>("area")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("canSpeak")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("community")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("gothra")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("highetFrom")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("highetTo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("isPremium")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("jobType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("maritalStatus")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("modifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("modifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("motherToung")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("religion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("subCommunity")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("userRefId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PartnerPreferances");
-                });
-
             modelBuilder.Entity("mswebapiserver.Models.User.PersonalDetail", b =>
                 {
                     b.Property<int>("Id")
@@ -367,9 +305,6 @@ namespace mswebapiserver.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("bloodGroup")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("canSpeak")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("dite")
@@ -391,9 +326,6 @@ namespace mswebapiserver.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("modifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("motherToung")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("sunSign")
@@ -697,43 +629,6 @@ namespace mswebapiserver.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserNotifications");
-                });
-
-            modelBuilder.Entity("mswebapiserver.Models.User.UserReligion", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
-
-                    b.Property<string>("community")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("gothra")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("isActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("modifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("modifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("religion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("subCommunity")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("userRefId")
-                        .HasColumnType("int");
-
-                    b.HasKey("id");
-
-                    b.ToTable("UserReligions");
                 });
 
             modelBuilder.Entity("mswebapiserver.Models.User.UserGallery", b =>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using mswebapiserver.Interfaces;
 using mswebapiserver.Models;
+using mswebapiserver.Models.User;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

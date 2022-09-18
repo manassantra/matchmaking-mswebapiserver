@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using mswebapiserver.Data;
 
@@ -11,9 +12,10 @@ using mswebapiserver.Data;
 namespace mswebapiserver.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220918082007_UserDetails-v2.5-Migration")]
+    partial class UserDetailsv25Migration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -340,9 +342,6 @@ namespace mswebapiserver.Migrations
 
                     b.Property<string>("subCommunity")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("userRefId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -727,9 +726,6 @@ namespace mswebapiserver.Migrations
 
                     b.Property<string>("subCommunity")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("userRefId")
-                        .HasColumnType("int");
 
                     b.HasKey("id");
 

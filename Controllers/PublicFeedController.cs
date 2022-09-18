@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
-using mswebapiserver.Models;
+using mswebapiserver.Models.User;
 using System.Collections.Generic;
 using System.Linq;
 
