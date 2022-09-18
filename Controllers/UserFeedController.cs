@@ -19,7 +19,7 @@ namespace mswebapiserver.Controllers
         public async Task<ActionResult<UserFeedDTO>> CreatePost(int id, UserFeedDTO userFeed)
         {
             var user = await _context.AppUsers.FindAsync(id);
-            var imageDetails = await _context.ProfilePictures.FindAsync(id);
+            var imageDetails = _context.ProfilePictures.FirstOrDefault(x => x.userRefid == user.id);
             var gallery = _context.ImageGallery.Where(x=> x.postBatchId == userFeed.postBatchId).ToList();
 
             if (user == null) return BadRequest();
@@ -28,7 +28,7 @@ namespace mswebapiserver.Controllers
             {
                 userRefId = id,
                 userName = user.fullName,
-                userImage = imageDetails?.imageFilename,
+                userImage = imageDetails.imageFilename,
                 postDescription = userFeed.postDescription,
                 postBatchId = userFeed.postBatchId,
                 imageDetails = gallery,

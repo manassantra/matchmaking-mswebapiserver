@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using mswebapiserver.DTOs;
 using mswebapiserver.Models.User;
 using System.Collections;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Nodes;
 
 namespace mswebapiserver.Controllers
 {
+    [Authorize]
     public class MatchController : BaseapiController
     {
         private readonly DatabaseContext _context;
@@ -49,9 +52,11 @@ namespace mswebapiserver.Controllers
             return Ok("Partner Preferances Updated !");
         }
 
-        [HttpGet]
+
+        [HttpGet("{id}")]
         public async Task<ActionResult<PublicProfileDTO>> BestMatchsProfiles(int id)
         {
+            var user = _context.AppUsers.FirstOrDefault(x => x.id == id);
             var userList = new List<PublicProfileDTO>();
             var userPref = _context.PartnerPreferances.FirstOrDefault(x => x.userRefId == id);
             IList<PartnerPreferance> allPreferences = _context.PartnerPreferances.Where(x => x.userRefId != id
